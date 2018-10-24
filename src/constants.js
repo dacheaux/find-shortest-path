@@ -3,6 +3,8 @@ module.exports = {
 	END: 'END',
 	FREE: 'FREE',
 	BLOCK: 'BLOCK',
-	VISITED: 'VISITED',
-	PATH: 'PATH',
+	UP: 'UP',
+	DOWN: 'DOWN',
+	LEFT: 'LEFT',
+	RIGHT: 'RIGHT',
 };
