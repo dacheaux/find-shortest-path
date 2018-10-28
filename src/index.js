@@ -3,7 +3,7 @@ const {
 	START, END, FREE, BLOCK, UP, DOWN, LEFT, RIGHT,
 } = require('./constants');
 
-function genMatrix(startCoord, endCoord) {
+function generateMatrix(startCoord, endCoord) {
 	const matrix = [];
 	const [sX, sY] = startCoord;
 	const [eX, eY] = endCoord;
@@ -86,7 +86,7 @@ function findShortestPath(matrix, startCoord) {
 	};
 	const queue = [startField];
 	const directions = [UP, DOWN, LEFT, RIGHT];
-	const dirlen = directions.length;
+	const dirLen = directions.length;
 	const visited = [];
 	for (let i = 0; i < 10; i += 1) {
 		visited.push([]);
@@ -95,7 +95,7 @@ function findShortestPath(matrix, startCoord) {
 
 	while (queue.length) {
 		const current = queue.shift();
-		for (let i = 0; i < dirlen; i += 1) {
+		for (let i = 0; i < dirLen; i += 1) {
 			const field = move(matrix, current, directions[i]);
 			if (field.type === END) {
 				shortestPath = buildPath(field);
@@ -113,8 +113,8 @@ function findShortestPath(matrix, startCoord) {
 	return shortestPath;
 }
 
-function genBlocks(startCoord, endCoord, numBlocks) {
-	const matrix = genMatrix(startCoord, endCoord);
+function generateBlocks(startCoord, endCoord, numBlocks) {
+	const matrix = generateMatrix(startCoord, endCoord);
 	const matrixIndexes = matrix.map(v => v.map((val, i) => i));
 	const freeFieldsIndexes = matrixIndexes.map((col, iCol) => (
 		col.filter(iRow => matrix[iCol][iRow] === FREE)
@@ -137,7 +137,7 @@ function genBlocks(startCoord, endCoord, numBlocks) {
 	return matrix;
 }
 
-const matrix = genBlocks(startCoordinate, endCoordinate, blocks);
+const matrix = generateBlocks(startCoordinate, endCoordinate, blocks);
 const shortestPath = findShortestPath(matrix, startCoordinate);
 console.log(shortestPath, 'is shortest path');
 console.log(logMatrix(matrix));
